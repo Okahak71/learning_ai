@@ -106,6 +106,8 @@ print(prob.shape, cnt.shape)
 #     nll += -lg
 #     sz += 1
 
+learning_rate = -75
+
 sz = xs.nelement()
 
 rng = t.Generator().manual_seed(2147483647)
@@ -124,7 +126,7 @@ for i in range(1000):
     w.grad = None
     loss.backward()
 
-    w.data += -75 * w.grad
+    w.data += learning_rate * w.grad
 
 # 100 epoch && learning_rate = -50 ---> loss = 2.4729
 
@@ -143,3 +145,5 @@ for i in range(5):
         if id == 0:
             break
     print(''.join(s))
+
+#min loss ~ 2.46
